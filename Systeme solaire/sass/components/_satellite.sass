@@ -1,0 +1,47 @@
+
+
+  @use "../abstracts/_all.sass" as abstracts
+
+
+
+
+
+
+
+.satellite
+  position: absolute
+  background-color: grey
+  
+
+
+  &--moon
+    @extend .satellite
+    @include abstracts.circle(abstracts.$moon-size)
+    @include abstracts.rotate-around-planet($duration: 5s, $planet-size: abstracts.$earth-size)
+    
+
+  &--phobos
+    @extend .satellite
+    @include abstracts.circle(abstracts.$phobos-size)
+    @include abstracts.rotate-around-planet($duration: 2s, $planet-size: abstracts.$mars-size)
+
+
+
+
+  &--deimos
+    @extend .satellite
+    @include abstracts.circle(abstracts.$deimos-size)
+    left: 10px
+    top: 10px
+    $center-x: calc(abstracts.$mars-size / 2 - 10px)
+    $center-y: calc(abstracts.$mars-size / 2 - 10px)
+    transform-origin: $center-x $center-y
+    animation: animation-rotate 3s linear infinite
+
+
+
+@keyframes animation-rotate
+  0%  //etat de départ
+    transform: rotate(0)
+  100%//état d'arrivé
+    transform: rotate(360deg)
